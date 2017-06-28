@@ -47,6 +47,11 @@ module.exports = function bindAutoBindMethods(internalInstance) {
     internalInstance.getPublicInstance() :
     internalInstance;
 
+  // Stateless function components don't have instances
+  if (!component) {
+    return;
+  }
+
   for (var autoBindKey in component.__reactAutoBindMap) {
     if (!component.__reactAutoBindMap.hasOwnProperty(autoBindKey)) {
       continue;
